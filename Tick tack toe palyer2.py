@@ -81,7 +81,6 @@ class tic_tac_toe:
                     btnp1.config(state='disable')
             elif self.cur_msg=='Reset':
                 self.cur_msg=None
-                self.rt=True
                 self.resty()
             if self.exit:
                 break
@@ -319,6 +318,7 @@ class tic_tac_toe:
             return None
         btn1.after(1, self.winner)
     def resety(self):
+        s.send('Reset'.encode())
         self.b1 = False
         self.b2 = False
         self.b3 = False
@@ -344,8 +344,6 @@ class tic_tac_toe:
             i.config(bg='tomato')
             i.config(state='normal')
             i.config(text='')
-        if not self.rt:
-            s.send('Reset'.encode())
             self.rt=False
         btnp2.config(state='disable')
         btnp1.config(state='normal')
