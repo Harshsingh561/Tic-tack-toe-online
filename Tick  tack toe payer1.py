@@ -78,6 +78,8 @@ class tic_tac_toe:
                     btn9.config(state='disable')
                     btnp1.config(state='normal')
                     btnp2.config(state='disable')
+            if self.cur_msg == 'Winner':
+                break
         else:
             pass
     def text(self):
@@ -156,6 +158,7 @@ class tic_tac_toe:
             btn2.config(bg='#F88379')
             btn3.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
+            s.send('Winner'.encode())
             self.wi = True
             for i in lst:
                 i.config(state='disable')
@@ -165,6 +168,7 @@ class tic_tac_toe:
             btn4.config(bg='#F88379')
             btn7.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
+            s.send('Winner'.encode())
             self.wi = True
             for i in lst:
                 i.config(state='disable')
@@ -174,6 +178,7 @@ class tic_tac_toe:
             btn8.config(bg='#F88379')
             btn9.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
+            s.send('Winner'.encode())
             self.wi = True
             for i in lst:
                 i.config(state='disable')
@@ -183,6 +188,7 @@ class tic_tac_toe:
             btn6.config(bg='#F88379')
             btn9.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
+            s.send('Winner'.encode())
             self.wi = True
             for i in lst:
                 i.config(state='disable')
@@ -192,6 +198,7 @@ class tic_tac_toe:
             btn5.config(bg='#F88379')
             btn6.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
+            s.send('Winner'.encode())
             self.wi = True
             for i in lst:
                 i.config(state='disable')
@@ -201,6 +208,7 @@ class tic_tac_toe:
             btn5.config(bg='#F88379')
             btn8.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
+            s.send('Winner'.encode())
             self.wi = True
             for i in lst:
                 i.config(state='disable')
@@ -211,6 +219,7 @@ class tic_tac_toe:
             btn9.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
             self.wi = True
+            s.send('Winner'.encode())
             for i in lst:
                 i.config(state='disable')
             return None
@@ -220,6 +229,7 @@ class tic_tac_toe:
             btn3.config(bg='#F88379')
             messagebox.showinfo(title='Winner', message='Player1 Won')
             self.wi=True
+            s.send('Winner'.encode())
             for i in lst:
                 i.config(state='disable')
             return None
