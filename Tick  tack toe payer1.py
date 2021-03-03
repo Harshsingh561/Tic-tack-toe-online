@@ -4,7 +4,6 @@ from tkinter import messagebox
 import socket
 s = socket.socket()
 host = input('Enter the name of the server to connect: ')
-# DESKTOP-RDTFRVP
 s.connect((host, 9999))
 print("Connected")
 class tic_tac_toe:
@@ -29,6 +28,7 @@ class tic_tac_toe:
         self.p9=False
         self.wi = False
         self.cur_msg = None
+        self.exit=False
     def recv(self):
         while self.cur_msg!='Winner':
             msg = s.recv(1024).decode()
@@ -78,7 +78,10 @@ class tic_tac_toe:
                     btn9.config(state='disable')
                     btnp1.config(state='normal')
                     btnp2.config(state='disable')
-            if self.cur_msg == 'Winner':
+            elif self.cur_msg=='Reset':
+                self.cur_msg=None
+                self.resty()
+            if self.exit:
                 break
         else:
             pass
@@ -315,6 +318,63 @@ class tic_tac_toe:
                 i.config(state='disable')
             return None
         btn1.after(1, self.winner)
+    def resety(self):
+        s.send('Reset'.encode())
+        self.b1 = False
+        self.b2 = False
+        self.b3 = False
+        self.b4 = False
+        self.b5 = False
+        self.b6 = False
+        self.b7 = False
+        self.b8 = False
+        self.b9 = False
+        self.p1 = False
+        self.p2 = False
+        self.p3 = False
+        self.p4 = False
+        self.p5 = False
+        self.p6 = False
+        self.p7 = False
+        self.p8 = False
+        self.p9 = False
+        self.wi = False
+        self.cur_msg = None
+        lst= [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9]
+        for i in lst:
+            i.config(bg='tomato')
+            i.config(state='normal')
+            i.config(text='')
+        btnp2.config(state='disable')
+        btnp1.config(state='normal')
+    def resty(self):
+        self.b1 = False
+        self.b2 = False
+        self.b3 = False
+        self.b4 = False
+        self.b5 = False
+        self.b6 = False
+        self.b7 = False
+        self.b8 = False
+        self.b9 = False
+        self.p1 = False
+        self.p2 = False
+        self.p3 = False
+        self.p4 = False
+        self.p5 = False
+        self.p6 = False
+        self.p7 = False
+        self.p8 = False
+        self.p9 = False
+        self.wi = False
+        self.cur_msg = None
+        lst = [btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9]
+        for i in lst:
+            i.config(bg='tomato')
+            i.config(state='normal')
+            i.config(text='')
+        btnp2.config(state='disable')
+        btnp1.config(state='normal')
 root = Tk()
 root.geometry('610x400')
 root.resizable(False, False)
@@ -332,6 +392,8 @@ btn8 = Button(height=8,width=24, command=cl.text8, bg='tomato')
 btn9 = Button(height=8,width=24, command=cl.text9, bg='tomato')
 btnp1 = Button(text='Your go: O', bg='blue')
 btnp2 = Button(text='Player2: X', state='disable', bg='blue')
+reset = Button(text='Reset', bg='blue', command=cl.resety, width=8, height=3)
+reset.place(x=540, y=60)
 btnp1.place(y=0, x=540)
 btnp2.place(y=30, x=540)
 btn1.place(x=0, y=0)
@@ -348,3 +410,4 @@ thr.start()
 thr2 = Thread(target=cl.recv)
 thr2.start()
 root.mainloop()
+cl.exit=True
