@@ -15,14 +15,10 @@ def accept_players():
 def recv1():
     while True:
         msg = connections[0].recv(1024).decode()
-        if msg=='Winner':
-            break
         send(msg.encode())
 def recv2():
     while True:
         msg = connections[1].recv(1024).decode()
-        if msg=='Winner':
-            break
         send2(msg.encode())
 def send(message):
     connections[1].send(message)
