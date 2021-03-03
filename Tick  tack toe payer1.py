@@ -30,7 +30,7 @@ class tic_tac_toe:
         self.cur_msg = None
         self.exit=False
     def recv(self):
-        while self.cur_msg!='Winner':
+        while True:
             msg = s.recv(1024).decode()
             self.cur_msg=msg
             if self.cur_msg=='btn1':
